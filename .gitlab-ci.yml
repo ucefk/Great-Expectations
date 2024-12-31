@@ -1,0 +1,25 @@
+stages:
+  - lint
+  - test
+
+include:
+  - project: cicd/templates
+    file: python/pylint.yml
+    ref: main
+  - project: cicd/templates
+    file: python/pytest-cov.yml
+    ref: main
+
+pylint:
+  extends: .pylint
+  variables:
+    WORKING_DIRECTORY: .
+    SOURCE_DIRECTORY: "*.py"
+
+pytest-cov:
+  extends: .pytest-cov
+  variables:
+    WORKING_DIRECTORY: .
+    COVERAGE_DIRECTORY: .
+    TESTS_DIRECTORY: tests/
+    FAIL_CONDITION: 40

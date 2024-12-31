@@ -1,0 +1,12 @@
+version: "3"
+services:
+  pgdb:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: gx_database
+      POSTGRES_USER: gx_user
+      POSTGRES_PASSWORD: gx_password
+    volumes:
+      - ./data/pg_db:/var/lib/postgresql/data
